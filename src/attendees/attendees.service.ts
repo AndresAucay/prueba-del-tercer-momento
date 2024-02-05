@@ -10,4 +10,16 @@ export class AttendeesService {
   async getTotalAsistentes() {
     return this.prisma.attendee.findMany();
   }
+  async comprarTrajes(){
+    return this.prisma.attendee.findMany({
+      select: {
+        id: true,
+        dni: true,
+        firstName: true,
+        lastName: true,
+        
+  }
+})
 }
+}
+  

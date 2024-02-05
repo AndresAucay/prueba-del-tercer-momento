@@ -6,10 +6,10 @@ import { UpdatePartyDto } from './dto/update-party.dto';
 @Controller('parties')
 export class PartiesController {
   constructor(private readonly partiesService: PartiesService) {}
-
-  @Get(':date')
-  findOne(@Param('date') date: Date) {
-    return this.partiesService.findOne();
+  /*@Get(':date')
+  getPartiesByDate(@Param('date') date: string) {
+    return this.partiesService.getPartiesByDate(new Date(date));
   }
+  */
   }
 

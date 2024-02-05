@@ -12,6 +12,12 @@ export class AttendeesController {
   async getAllAttendees() {
     return this.attendeesService.getTotalAsistentes();
   }
-  
 
-}
+    @Get('purchase')
+    async comprarTrajes(){
+      const attendeesWithCostumes = await this.attendeesService.comprarTrajes();
+      return attendeesWithCostumes;
+    
+    }
+
+  }

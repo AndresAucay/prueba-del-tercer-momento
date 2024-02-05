@@ -6,12 +6,15 @@ import { PrismaService } from "../prisma/prisma.service";
 @Injectable()
 export class PartiesService {
   constructor(private readonly prisma: PrismaService) {}
-
-  async findOne(date: Date) {
-    return this.prisma.party.findUnique({
+  /*async getPartiesByDate(date: Date) {
+    // Utiliza el servicio Prisma para interactuar con la base de datos
+    return this.prisma.party.findMany({
       where: {
-        date: date,
-      },
-    });
-  }
+        date: {
+          gte: date,
+  
+        }
+      }
+    })
+  }*/
 }

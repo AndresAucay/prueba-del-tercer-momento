@@ -11,7 +11,7 @@ async function main() {
       weakness: ['Silver'],
       skills: ['Howling', 'Running'],
       price: 200,
-      stock: false,
+      stock: true,
     },
   });
 

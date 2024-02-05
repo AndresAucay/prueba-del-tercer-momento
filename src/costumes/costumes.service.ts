@@ -7,7 +7,7 @@ import { PrismaService } from "../prisma/prisma.service";
 export class CostumesService {
   constructor(private prisma: PrismaService) {}
 //paso 1 listar todos los trajes
-  async getCostumesInStock() {
+  async getCostumesInStock1() {
     return this.prisma.costume.findMany({
       where: { stock: true }, 
     });
@@ -15,16 +15,34 @@ export class CostumesService {
 
 //paso 2 agregar mas al inventario para satisfacer ls nececidades
 
-async supplyCostumes(createCostumeDto:CreateCostumeDto) {
+async getCostumesInStock() {
+  return this.prisma.costume.findMany({
+    where: { stock: true },
+  });
+}
+
+async supplyCostumes(createCostumeDto: CreateCostumeDto) {
   const { quantity } = createCostumeDto;
 
-  
-const costumesInStock = await this.prisma.costume.count({ where: { stock: true } });
+  const costumesInStock = await this.prisma.costume.count({ where: { stock: true } });
+
+  console.log('Cantidad de disfraces en stock:', costumesInStock);
+  console.log('Cantidad especificada en el suministro:', quantity);
+
   if (costumesInStock === quantity) {
-    
-    return ('no hay problema')
+    throw new BadRequestException('Inventario suficiente, no se requiere suministro.');
   } else {
-  return ('fueron agregados los trajes');
+    console.log('Suministro de disfraces completado exitosamente.');
+    return 'Suministro de disfraces completado exitosamente.';
   }
 }
+async updateCostume(id: number, updateCostumeDto: UpdateCostumeDto) {
+  return this.prisma.costume.update({
+    where: { 
+      id: Number(id),
+    },
+    data: { stock: updateCostumeDto.stock },
+  });
+}
+
 }

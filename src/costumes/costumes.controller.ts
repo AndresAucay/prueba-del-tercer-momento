@@ -8,14 +8,27 @@ export class CostumesController {
   constructor(private readonly costumesService: CostumesService) {}
 
   @Get('stock')
+  async getCostumesInStock1() {
+    return this.costumesService.getCostumesInStock();
+  }
+//paso 2 
+  @Get('stock-asistentes')
   async getCostumesInStock() {
     return this.costumesService.getCostumesInStock();
   }
 
 
   @Post('supplying')
-  async supplyCostumes(@Body() createCostumeSupplyDto: CreateCostumeDto) {
-    return this.costumesService.supplyCostumes(createCostumeSupplyDto);
+  async supplyCostumes(@Body() createCostumeDto: CreateCostumeDto) {
+    return this.costumesService.supplyCostumes(createCostumeDto);
   }
 
+
+
+@Patch('update/:id')
+async updateCostume(@Param('id') id: number, @Body() updateCostumeDto: UpdateCostumeDto) {
+  return this.costumesService.updateCostume(id, updateCostumeDto);
 }
+
+}
+

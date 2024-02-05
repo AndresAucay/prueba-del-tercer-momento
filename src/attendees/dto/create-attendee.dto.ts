@@ -32,6 +32,7 @@
     @IsOptional()
     @IsBoolean()
     isNervous?: boolean;
+    costumeID: number
     }
 
 
